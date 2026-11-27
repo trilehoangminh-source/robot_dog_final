@@ -1,0 +1,682 @@
+#VRML_SIM R2025a utf8
+# license: Apache License 2.0
+# license url: http://www.apache.org/licenses/LICENSE-2.0
+# This is a proto file for Webots for the robot_dog
+# Extracted from: /home/minhtri/robot_dog_final/src/robot_dog_final/resource/robot_dog.urdf
+
+PROTO robot_dog [
+  field  SFVec3f     translation     0 0 0
+  field  SFRotation  rotation        0 0 1 0
+  field  SFString    name            "robot_dog"  # Is `Robot.name`.
+  field  SFString    controller      "void"       # Is `Robot.controller`.
+  field  MFString    controllerArgs  []           # Is `Robot.controllerArgs`.
+  field  SFString    customData      ""           # Is `Robot.customData`.
+  field  SFBool      supervisor      FALSE        # Is `Robot.supervisor`.
+  field  SFBool      synchronization TRUE         # Is `Robot.synchronization`.
+  field  SFBool      selfCollision   FALSE        # Is `Robot.selfCollision`.
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    controller IS controller
+    controllerArgs IS controllerArgs
+    customData IS customData
+    supervisor IS supervisor
+    synchronization IS synchronization
+    selfCollision IS selfCollision
+    children [
+      Shape {
+        appearance DEF base_color PBRAppearance {
+          baseColor 0.500000 0.500000 0.500000
+          roughness 1.000000
+          metalness 0
+        }
+        geometry Box {
+           size 0.300000 0.120000 0.450000
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0.000000 1.000000 0.000000
+          anchor -0.150000 0.000000 -0.225000
+        }
+        device [
+          RotationalMotor {
+            name "FL_hip_yaw"
+            maxVelocity 10.0
+            minPosition -3.14
+            maxPosition 3.14
+            maxTorque 100.0
+          }
+          PositionSensor {
+            name "FL_hip_yaw_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation -0.150000 0.000000 -0.225000
+          children [
+            Pose {
+              translation -0.040000 0.000000 0.000000
+              children [
+                Shape {
+                  appearance DEF hip_color PBRAppearance {
+                    baseColor 0.500000 0.500000 0.500000
+                    roughness 1.000000
+                    metalness 0
+                  }
+                  geometry Box {
+                     size 0.080000 0.050000 0.050000
+                  }
+                }
+              ]
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                anchor -0.080000 0.000000 0.000000
+              }
+              device [
+                RotationalMotor {
+                  name "FL_hip_pitch"
+                  maxVelocity 10.0
+                  minPosition -3.14
+                  maxPosition 3.14
+                  maxTorque 100.0
+                }
+                PositionSensor {
+                  name "FL_hip_pitch_sensor"
+                }
+              ]
+              endPoint Solid {
+                translation -0.080000 0.000000 0.000000
+                children [
+                  Pose {
+                    translation 0.000000 -0.100000 0.000000
+                    children [
+                      Shape {
+                        appearance DEF thigh_color PBRAppearance {
+                          baseColor 0.500000 0.500000 0.500000
+                          roughness 1.000000
+                          metalness 0
+                        }
+                        geometry Box {
+                           size 0.040000 0.200000 0.040000
+                        }
+                      }
+                    ]
+                  }
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      anchor 0.000000 -0.200000 0.000000
+                    }
+                    device [
+                      RotationalMotor {
+                        name "FL_knee_pitch"
+                        maxVelocity 10.0
+                        minPosition -3.14
+                        maxPosition 3.14
+                        maxTorque 100.0
+                      }
+                      PositionSensor {
+                        name "FL_knee_pitch_sensor"
+                      }
+                    ]
+                    endPoint Solid {
+                      translation 0.000000 -0.200000 0.000000
+                      children [
+                        Pose {
+                          translation 0.000000 -0.100000 0.000000
+                          children [
+                            Shape {
+                              appearance DEF shank_color PBRAppearance {
+                                baseColor 0.500000 0.500000 0.500000
+                                roughness 1.000000
+                                metalness 0
+                              }
+                              geometry Box {
+                                 size 0.030000 0.200000 0.030000
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                      name "FL_shank_solid"
+                      boundingObject Pose {
+                        translation 0.000000 -0.100000 0.000000
+                        children [
+                          Box {
+                             size 0.030000 0.200000 0.030000
+                          }
+                        ]
+                      }
+                      physics Physics {
+                        density -1
+                        mass 0.080000
+                        centerOfMass [ 0.000000 0.000000 0.000000 ]
+                        inertiaMatrix [
+                          3.000000e-04 3.000000e-04 1.000000e-04
+                          0.000000e+00 0.000000e+00 0.000000e+00
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "FL_thigh_solid"
+                boundingObject Pose {
+                  translation 0.000000 -0.100000 0.000000
+                  children [
+                    Box {
+                       size 0.040000 0.200000 0.040000
+                    }
+                  ]
+                }
+                physics Physics {
+                  density -1
+                  mass 0.120000
+                  centerOfMass [ 0.000000 0.000000 0.000000 ]
+                  inertiaMatrix [
+                    5.000000e-04 5.000000e-04 1.000000e-04
+                    0.000000e+00 0.000000e+00 0.000000e+00
+                  ]
+                }
+              }
+            }
+          ]
+          name "FL_hip_solid"
+          boundingObject Pose {
+            translation -0.040000 0.000000 0.000000
+            children [
+              Box {
+                 size 0.080000 0.050000 0.050000
+              }
+            ]
+          }
+          physics Physics {
+            density -1
+            mass 0.050000
+            centerOfMass [ 0.000000 0.000000 0.000000 ]
+            inertiaMatrix [
+              1.000000e-04 1.000000e-04 1.000000e-04
+              0.000000e+00 0.000000e+00 0.000000e+00
+            ]
+          }
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0.000000 1.000000 0.000000
+          anchor 0.150000 0.000000 -0.225000
+        }
+        device [
+          RotationalMotor {
+            name "FR_hip_yaw"
+            maxVelocity 10.0
+            minPosition -3.14
+            maxPosition 3.14
+            maxTorque 100.0
+          }
+          PositionSensor {
+            name "FR_hip_yaw_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation 0.150000 0.000000 -0.225000
+          children [
+            Pose {
+              translation 0.040000 0.000000 0.000000
+              children [
+                Shape {
+                  appearance USE hip_color
+                  geometry Box {
+                     size 0.080000 0.050000 0.050000
+                  }
+                }
+              ]
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                anchor 0.080000 0.000000 0.000000
+              }
+              device [
+                RotationalMotor {
+                  name "FR_hip_pitch"
+                  maxVelocity 10.0
+                  minPosition -3.14
+                  maxPosition 3.14
+                  maxTorque 100.0
+                }
+                PositionSensor {
+                  name "FR_hip_pitch_sensor"
+                }
+              ]
+              endPoint Solid {
+                translation 0.080000 0.000000 0.000000
+                children [
+                  Pose {
+                    translation 0.000000 -0.100000 0.000000
+                    children [
+                      Shape {
+                        appearance USE thigh_color
+                        geometry Box {
+                           size 0.040000 0.200000 0.040000
+                        }
+                      }
+                    ]
+                  }
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      anchor 0.000000 -0.200000 0.000000
+                    }
+                    device [
+                      RotationalMotor {
+                        name "FR_knee_pitch"
+                        maxVelocity 10.0
+                        minPosition -3.14
+                        maxPosition 3.14
+                        maxTorque 100.0
+                      }
+                      PositionSensor {
+                        name "FR_knee_pitch_sensor"
+                      }
+                    ]
+                    endPoint Solid {
+                      translation 0.000000 -0.200000 0.000000
+                      children [
+                        Pose {
+                          translation 0.000000 -0.100000 0.000000
+                          children [
+                            Shape {
+                              appearance USE shank_color
+                              geometry Box {
+                                 size 0.030000 0.200000 0.030000
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                      name "FR_shank_solid"
+                      boundingObject Pose {
+                        translation 0.000000 -0.100000 0.000000
+                        children [
+                          Box {
+                             size 0.030000 0.200000 0.030000
+                          }
+                        ]
+                      }
+                      physics Physics {
+                        density -1
+                        mass 0.080000
+                        centerOfMass [ 0.000000 0.000000 0.000000 ]
+                        inertiaMatrix [
+                          3.000000e-04 3.000000e-04 1.000000e-04
+                          0.000000e+00 0.000000e+00 0.000000e+00
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "FR_thigh_solid"
+                boundingObject Pose {
+                  translation 0.000000 -0.100000 0.000000
+                  children [
+                    Box {
+                       size 0.040000 0.200000 0.040000
+                    }
+                  ]
+                }
+                physics Physics {
+                  density -1
+                  mass 0.120000
+                  centerOfMass [ 0.000000 0.000000 0.000000 ]
+                  inertiaMatrix [
+                    5.000000e-04 5.000000e-04 1.000000e-04
+                    0.000000e+00 0.000000e+00 0.000000e+00
+                  ]
+                }
+              }
+            }
+          ]
+          name "FR_hip_solid"
+          boundingObject Pose {
+            translation 0.040000 0.000000 0.000000
+            children [
+              Box {
+                 size 0.080000 0.050000 0.050000
+              }
+            ]
+          }
+          physics Physics {
+            density -1
+            mass 0.050000
+            centerOfMass [ 0.000000 0.000000 0.000000 ]
+            inertiaMatrix [
+              1.000000e-04 1.000000e-04 1.000000e-04
+              0.000000e+00 0.000000e+00 0.000000e+00
+            ]
+          }
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0.000000 1.000000 0.000000
+          anchor -0.150000 0.000000 0.225000
+        }
+        device [
+          RotationalMotor {
+            name "RL_hip_yaw"
+            maxVelocity 10.0
+            minPosition -3.14
+            maxPosition 3.14
+            maxTorque 100.0
+          }
+          PositionSensor {
+            name "RL_hip_yaw_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation -0.150000 0.000000 0.225000
+          children [
+            Pose {
+              translation -0.040000 0.000000 0.000000
+              children [
+                Shape {
+                  appearance USE hip_color
+                  geometry Box {
+                     size 0.080000 0.050000 0.050000
+                  }
+                }
+              ]
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                anchor -0.080000 0.000000 0.000000
+              }
+              device [
+                RotationalMotor {
+                  name "RL_hip_pitch"
+                  maxVelocity 10.0
+                  minPosition -3.14
+                  maxPosition 3.14
+                  maxTorque 100.0
+                }
+                PositionSensor {
+                  name "RL_hip_pitch_sensor"
+                }
+              ]
+              endPoint Solid {
+                translation -0.080000 0.000000 0.000000
+                children [
+                  Pose {
+                    translation 0.000000 -0.100000 0.000000
+                    children [
+                      Shape {
+                        appearance USE thigh_color
+                        geometry Box {
+                           size 0.040000 0.200000 0.040000
+                        }
+                      }
+                    ]
+                  }
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      anchor 0.000000 -0.200000 0.000000
+                    }
+                    device [
+                      RotationalMotor {
+                        name "RL_knee_pitch"
+                        maxVelocity 10.0
+                        minPosition -3.14
+                        maxPosition 3.14
+                        maxTorque 100.0
+                      }
+                      PositionSensor {
+                        name "RL_knee_pitch_sensor"
+                      }
+                    ]
+                    endPoint Solid {
+                      translation 0.000000 -0.200000 0.000000
+                      children [
+                        Pose {
+                          translation 0.000000 -0.100000 0.000000
+                          children [
+                            Shape {
+                              appearance USE shank_color
+                              geometry Box {
+                                 size 0.030000 0.200000 0.030000
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                      name "RL_shank_solid"
+                      boundingObject Pose {
+                        translation 0.000000 -0.100000 0.000000
+                        children [
+                          Box {
+                             size 0.030000 0.200000 0.030000
+                          }
+                        ]
+                      }
+                      physics Physics {
+                        density -1
+                        mass 0.080000
+                        centerOfMass [ 0.000000 0.000000 0.000000 ]
+                        inertiaMatrix [
+                          3.000000e-04 3.000000e-04 1.000000e-04
+                          0.000000e+00 0.000000e+00 0.000000e+00
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "RL_thigh_solid"
+                boundingObject Pose {
+                  translation 0.000000 -0.100000 0.000000
+                  children [
+                    Box {
+                       size 0.040000 0.200000 0.040000
+                    }
+                  ]
+                }
+                physics Physics {
+                  density -1
+                  mass 0.120000
+                  centerOfMass [ 0.000000 0.000000 0.000000 ]
+                  inertiaMatrix [
+                    5.000000e-04 5.000000e-04 1.000000e-04
+                    0.000000e+00 0.000000e+00 0.000000e+00
+                  ]
+                }
+              }
+            }
+          ]
+          name "RL_hip_solid"
+          boundingObject Pose {
+            translation -0.040000 0.000000 0.000000
+            children [
+              Box {
+                 size 0.080000 0.050000 0.050000
+              }
+            ]
+          }
+          physics Physics {
+            density -1
+            mass 0.050000
+            centerOfMass [ 0.000000 0.000000 0.000000 ]
+            inertiaMatrix [
+              1.000000e-04 1.000000e-04 1.000000e-04
+              0.000000e+00 0.000000e+00 0.000000e+00
+            ]
+          }
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0.000000 1.000000 0.000000
+          anchor 0.150000 0.000000 0.225000
+        }
+        device [
+          RotationalMotor {
+            name "RR_hip_yaw"
+            maxVelocity 10.0
+            minPosition -3.14
+            maxPosition 3.14
+            maxTorque 100.0
+          }
+          PositionSensor {
+            name "RR_hip_yaw_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation 0.150000 0.000000 0.225000
+          children [
+            Pose {
+              translation 0.040000 0.000000 0.000000
+              children [
+                Shape {
+                  appearance USE hip_color
+                  geometry Box {
+                     size 0.080000 0.050000 0.050000
+                  }
+                }
+              ]
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                anchor 0.080000 0.000000 0.000000
+              }
+              device [
+                RotationalMotor {
+                  name "RR_hip_pitch"
+                  maxVelocity 10.0
+                  minPosition -3.14
+                  maxPosition 3.14
+                  maxTorque 100.0
+                }
+                PositionSensor {
+                  name "RR_hip_pitch_sensor"
+                }
+              ]
+              endPoint Solid {
+                translation 0.080000 0.000000 0.000000
+                children [
+                  Pose {
+                    translation 0.000000 -0.100000 0.000000
+                    children [
+                      Shape {
+                        appearance USE thigh_color
+                        geometry Box {
+                           size 0.040000 0.200000 0.040000
+                        }
+                      }
+                    ]
+                  }
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      anchor 0.000000 -0.200000 0.000000
+                    }
+                    device [
+                      RotationalMotor {
+                        name "RR_knee_pitch"
+                        maxVelocity 10.0
+                        minPosition -3.14
+                        maxPosition 3.14
+                        maxTorque 100.0
+                      }
+                      PositionSensor {
+                        name "RR_knee_pitch_sensor"
+                      }
+                    ]
+                    endPoint Solid {
+                      translation 0.000000 -0.200000 0.000000
+                      children [
+                        Pose {
+                          translation 0.000000 -0.100000 0.000000
+                          children [
+                            Shape {
+                              appearance USE shank_color
+                              geometry Box {
+                                 size 0.030000 0.200000 0.030000
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                      name "RR_shank_solid"
+                      boundingObject Pose {
+                        translation 0.000000 -0.100000 0.000000
+                        children [
+                          Box {
+                             size 0.030000 0.200000 0.030000
+                          }
+                        ]
+                      }
+                      physics Physics {
+                        density -1
+                        mass 0.080000
+                        centerOfMass [ 0.000000 0.000000 0.000000 ]
+                        inertiaMatrix [
+                          3.000000e-04 3.000000e-04 1.000000e-04
+                          0.000000e+00 0.000000e+00 0.000000e+00
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "RR_thigh_solid"
+                boundingObject Pose {
+                  translation 0.000000 -0.100000 0.000000
+                  children [
+                    Box {
+                       size 0.040000 0.200000 0.040000
+                    }
+                  ]
+                }
+                physics Physics {
+                  density -1
+                  mass 0.120000
+                  centerOfMass [ 0.000000 0.000000 0.000000 ]
+                  inertiaMatrix [
+                    5.000000e-04 5.000000e-04 1.000000e-04
+                    0.000000e+00 0.000000e+00 0.000000e+00
+                  ]
+                }
+              }
+            }
+          ]
+          name "RR_hip_solid"
+          boundingObject Pose {
+            translation 0.040000 0.000000 0.000000
+            children [
+              Box {
+                 size 0.080000 0.050000 0.050000
+              }
+            ]
+          }
+          physics Physics {
+            density -1
+            mass 0.050000
+            centerOfMass [ 0.000000 0.000000 0.000000 ]
+            inertiaMatrix [
+              1.000000e-04 1.000000e-04 1.000000e-04
+              0.000000e+00 0.000000e+00 0.000000e+00
+            ]
+          }
+        }
+      }
+    ]
+    name IS name
+    boundingObject Box {
+       size 0.300000 0.120000 0.450000
+    }
+    physics Physics {
+      density -1
+      mass 1.000000
+      centerOfMass [ 0.000000 0.000000 0.000000 ]
+      inertiaMatrix [
+        2.000000e-02 2.000000e-02 2.000000e-02
+        0.000000e+00 0.000000e+00 0.000000e+00
+      ]
+    }
+  }
+}
